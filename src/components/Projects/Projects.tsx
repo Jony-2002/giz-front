@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector } from "@/redux/hooks";
-// import { data } from "@/app/data/projects";
+import { mock_data } from "@/app/data/projects";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -21,17 +21,17 @@ export default function Projects() {
     dispatch(fetchProject());
   }, []);
 
-  const [projects, setProjects] = useState<Projectinterface[]>(
-    state.filteredData
+  const [projects, setProjects] = useState<any[]>(
+    mock_data
   );
 
   useEffect(() => {
     if (state.filteredData.length < 1) {
-      setProjects(state.projects);
+      setProjects(state.data);
     } else {
       setProjects(state.filteredData);
     }
-  }, [projects, state.projects, state.filteredData]);
+  }, [projects, state.data, state.filteredData]);
 
   const [active, setActive] = useState<number | null>(null);
 
@@ -53,7 +53,7 @@ export default function Projects() {
         Projects
       </h3>
       <section className="flex flex-col items-start justify-start gap-3 pb-5">
-        {state.loading && <div>loading</div>}
+        {/* {state.loading && <div>loading</div>}
         {!state.loading && state.error ? <div>Error: {state.error}</div> : null}
         {!state.loading &&
           state.projects?.length > 0 &&
@@ -105,6 +105,62 @@ export default function Projects() {
                   className={`${active == index
                       ? "absolute bottom-5 left-[60px] opacity-1"
                       : "absolute opacity-0"
+                    }`}
+                >
+                  read more
+                </Link>
+              </div>
+            );
+          })} */}
+        {
+          projects.map((project: any, index: number) => {
+            return (
+              <div
+                key={project.id}
+                onClick={() => handleAccordion(index, project)}
+                className={`${active == index ? "card collapsed__card" : "card"
+                  }`}
+              >
+                <div
+                  className={`${active == index
+                    ? "collapsed__image_container"
+                    : "card__image"
+                    }`}
+                >
+                  <img
+                    className={`${active == index
+                      ? "default__image collapsed__image"
+                      : "default__image"
+                      }`}
+                    src={project.image.src}
+                    alt="Project Image"
+                  // width={200}
+                  // height={200}
+                  />
+                </div>
+                <div
+                  className={`${active == index
+                    ? "card__info collapsed__info"
+                    : "card__info"
+                    }`}
+                >
+                  <h6 className="text-[15px] font-bold">{project.title}</h6>
+                  <p
+                    className={`${active == index
+                      ? "default__text collapsed__text"
+                      : "default__text"
+                      }`}
+                  >
+                    {project.subtitle}
+                  </p>
+
+                  <div></div>
+                </div>
+                <Link
+                  href={`/${project.id}`}
+                  className={`${active == index
+                    ? "absolute bottom-5 left-[60px] opacity-1"
+                    : "absolute opacity-0"
                     }`}
                 >
                   read more

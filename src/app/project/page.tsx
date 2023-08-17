@@ -134,3 +134,11 @@ export default function SingleProject({
     </div>
   );
 }
+
+// export async function generateStaticParams() {
+//   const data: Projectinterface[] = mock_data;
+
+//   return data.map((project: Projectinterface) => ({
+//     projectID: project.project_id.toString()
+//   }))
+// }

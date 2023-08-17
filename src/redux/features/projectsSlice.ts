@@ -4,7 +4,7 @@ import {
   PayloadAction,
   current,
 } from "@reduxjs/toolkit";
-import { mock_data } from "@/app/data/projects";
+// import { mock_data } from "@/app/data/projects";
 import { StaticImageData } from "next/image";
 
 import { API_KEY } from "@/app/configs/API_KEY";
@@ -43,7 +43,7 @@ const initialState = {
   // loading: false,
   // error: "",
   // projects: [],
-  data: mock_data,
+  data: [],
   filteredData: [],
   searchFilter: [],
 } as Data;

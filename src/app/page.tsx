@@ -6,8 +6,8 @@ import MainSlider from "@/components/MainSlider/MainSlider";
 
 export default function Home() {
   return (
-    <main>
-      <MainSlider />
+    <main className="flex flex-col gap-4">
+      <MainSlider/>
       <About />
       <Filter />
       <MainContent />

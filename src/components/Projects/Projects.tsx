@@ -1,8 +1,9 @@
 "use client";
 
 import { useAppSelector } from "@/redux/hooks";
-import { mock_data } from "@/app/data/projects";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import type { StaticImageData } from 'next/image';
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
@@ -10,16 +11,45 @@ import { useAppDispatch } from "@/redux/hooks";
 import { API_KEY } from "@/app/configs/API_KEY";
 import { Projectinterface } from "@/app/interfaces/ProjectInterface";
 import { fetchProject } from "@/redux/features/projectsSlice";
-
+import {viewProject} from "@/redux/features/projectsSlice";
 import "./Projects.css"
 
-export default function Projects() {
-  const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.ProjectsReducer);
+import uca_card from "../../../public/images/media/uca/UCA_Photo_1.jpg"
+import dairy from "../../../public/images/media/dairy/Khuf_1_Photo_1.jpg"
+import entrepreneurship_center from "../../../public/images/media/uca/UCA_Photo_1.jpg"
+// import foodSafety from "../../../public/images/media/uca/UCA_Photo_1.jpg"
+import gosstand from "../../../public/images/media/gosstand/Gos_st_Photo_1.jpg"
+import { useRouter } from "next/navigation";
 
-  useEffect(() => {
-    dispatch(fetchProject());
-  }, []);
+
+import vegetable from "../../../public/images/media/vegetable/Derzud_Photo_2.jpg"
+import TVETCentre from "../../../public/images/media/tvetcentre/tvet_uca_Photo_1.jpg"
+import zindagi from "../../../public/images/media/cooperativezindagi/Coop - zind_Photo_1.jpg"
+import gosstandBazar from "../../../public/images/media/foodsafety/Food_lab_Photo_1.jpg"
+
+type Images = {
+  uca: any;
+  dairy: any;
+  entrepreneurship_center: any;
+  foodSafety: any;
+  vegetable: any;
+  TVETCentre: any;
+  cooperative : any;
+
+};
+
+export default function Projects() {
+  const router = useRouter();
+
+  const cardImages:any = {uca: uca_card, dairy: dairy, entrepreneurship_center, gosstand, vegetable, TVETCentre, zindagi, gosstandBazar};
+  const dispatch = useAppDispatch();
+
+  // const dispatch = useAppDispatch();
+  const state:any = useAppSelector((state) => state.ProjectsReducer);
+
+  // useEffect(() => {
+  //   dispatch(fetchProject());
+  // }, []);
 
   const [projects, setProjects] = useState<any[]>(
     mock_data
@@ -39,12 +69,13 @@ export default function Projects() {
     let activeProject = projects.find(
       (doc) => doc.project_id == project.project_id
     );
-    setActive(index);
-    console.log(activeProject);
 
     if (active == index) {
-      setActive(null);
+      // setActive(null);
+    }else{
+      setActive(index);
     }
+
   };
 
   return (
@@ -71,15 +102,14 @@ export default function Projects() {
                       : "card__image"
                     }`}
                 >
-                  <img
+                  
+                  <Image
                     className={`${active == index
                         ? "default__image collapsed__image"
                         : "default__image"
                       }`}
-                    src={project.banner_url}
+                    src={cardImages[project.banner_url]}
                     alt="Project Image"
-                  // width={200}
-                  // height={200}
                   />
                 </div>
                 <div
@@ -98,17 +128,20 @@ export default function Projects() {
                     {project.short_en}
                   </p>
 
-                  <div></div>
                 </div>
-                <Link
-                  href={`/${project.project_id}`}
+                <button
                   className={`${active == index
                       ? "absolute bottom-5 left-[60px] opacity-1"
                       : "absolute opacity-0"
                     }`}
+                    onClick={() => { 
+                      dispatch(viewProject(project));
+                      useRouter
+                      router.push('./project', { scroll: false })
+                    }}
                 >
                   read more
-                </Link>
+                </button>
               </div>
             );
           })} */}

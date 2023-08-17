@@ -1,5 +1,5 @@
 export interface Projectinterface {
-  project_id: string;
+  project_id: number;
   name_ru: string;
   name_tj: string;
   name_en: string;
@@ -8,9 +8,10 @@ export interface Projectinterface {
   short_tj: string;
   short_en: string;
   short_de: string;
+  location: []|any;
   category_id: string;
   banner_url: string;
-  district_id: string;
+  district_id: number;
   village_id: string;
   adress_ru: string;
   adress_tj: string;

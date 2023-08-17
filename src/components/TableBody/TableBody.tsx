@@ -21,7 +21,7 @@ interface DataInterface {
 
 export default function TableBody() {
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.ProjectsReducer);
+  const state:any = useAppSelector((state) => state.ProjectsReducer);
 
   useEffect(() => {
     dispatch(fetchProject());

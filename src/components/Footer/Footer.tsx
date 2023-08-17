@@ -8,10 +8,10 @@ export default function Footer() {
       <div>
         <Logo />
         <p className="text-white block mt-4">
-          © 2023 Nomad Trails. All rights reserved.
+          © 2023 GIZ. All rights reserved.
         </p>
       </div>
-      <nav>
+      {/* <nav>
         <ul className="flex flex-col justify-start items-start gap-3">
           <li>
             <Link className="text-white text-xl font-bold" href={"/login"}>
@@ -24,11 +24,11 @@ export default function Footer() {
             </Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
       <div>
         <h3 className="text-white font-bold">Contacts</h3>
-        <p className="text-white">example@gmail.com</p>
-        <p className="text-white mt-1">+992 (00) 000 00-00</p>
+        <p className="text-white">giz-tadschikistan@giz.de</p>
+        <p className="text-white mt-1">+992 (44) 600 61 07</p>
       </div>
     </footer>
   );

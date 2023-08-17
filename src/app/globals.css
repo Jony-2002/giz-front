@@ -266,6 +266,8 @@ html {
 }
 
 .collapsed__info {
+  width: 90%;
+
   top: 350px;
   right: 100px;
   left: 0;

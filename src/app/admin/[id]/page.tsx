@@ -9,13 +9,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchProject } from "@/redux/features/projectsSlice";
 import axios from "axios";
 
-export default function UpdateProject({ params }: { params: { id: string } }) {
+export default function UpdateProject({ params }: { params: { id: number } }) {
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.ProjectsReducer);
+  const state:any = useAppSelector((state) => state.ProjectsReducer);
 
-  useEffect(() => {
-    dispatch(fetchProject());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchProject());
+  // }, []);
 
   const [projects, setProjects] = useState<Projectinterface[]>(
     state.filteredData
